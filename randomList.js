@@ -17,7 +17,7 @@ function generateRandomNumber(length) {
   }
 
   for (let i = 0; i < length; i++) {
-    //get a random index from the remaining number
+    //get a random index from the remaining number using Math random and floor to calculate the range
     const randomIndex = Math.floor(Math.random() * arrayNum.length);
 
     //then remove the selected number from the remaining numbers
@@ -30,5 +30,6 @@ function generateRandomNumber(length) {
   return randomList;
 }
 
+//call the random numbers function with an argument 10000 to generate the list of unique numbers
 const randomNumbers = generateRandomNumber(10000);
 console.log (randomNumbers);
