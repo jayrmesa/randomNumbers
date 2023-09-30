@@ -1,14 +1,26 @@
-import React from "react";
+import React from 'react';
 
-function InputValues() {
+function InputValue({ minValue, maxValue, onInputChange }) {
   return (
     <div>
-      <input typ="text" placeholder="Enter range..." />
-      <button>Shuffle</button>
+      <input
+        type="text"
+        placeholder="Enter min number..."
+        name="minValue"
+        value={minValue}
+        onChange={onInputChange}
+      />
+      <input
+        type="text"
+        placeholder="Enter max number..."
+        name="maxValue"
+        value={maxValue}
+        onChange={onInputChange}
+      />
     </div>
   );
 }
 
-export default InputValues; 
+export default InputValue;
 
 
