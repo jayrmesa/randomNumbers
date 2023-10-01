@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import InputValue from './components/InputValue';
+import ResultDisplay from './components/ResultDisplay';
 
 function App() {
+  const [minValue, setMinValue] = useState(1);
+  const [maxValue, setMaxValue] = useState(10000);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    handleInputValueChange(name, value);
+  };
+
+  const handleInputValueChange = (name, value) => {
+
+    if (name === 'minValue') {
+      setMinValue(parseInt(value, 10));
+    } else if (name === 'maxValue') {
+      setMaxValue(parseInt(value, 10));
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Shuffler</h1>
+      <InputValue
+        minValue={minValue}
+        maxValue={maxValue}
+        onInputChange={handleInputChange}
+      />
+      <ResultDisplay />
     </div>
   );
 }
 
 export default App;
+

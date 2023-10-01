@@ -33,3 +33,5 @@ function generateRandomNumber(length) {
 //call the random numbers function with an argument 10000 to generate the list of unique numbers
 const randomNumbers = generateRandomNumber(10000);
 console.log (randomNumbers);
+
+
