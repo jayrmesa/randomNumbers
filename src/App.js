@@ -3,6 +3,7 @@ import InputValue from './components/InputValue';
 import ResultDisplay from './components/ResultDisplay';
 
 function App() {
+  const [shuffledNumbers, setShuffledNumbers] = useState([]);
   const [minValue, setMinValue] = useState(1);
   const [maxValue, setMaxValue] = useState(10000);
 
@@ -20,6 +21,33 @@ function App() {
     }
   };
 
+  const handleShuffle = () => {
+    const isValidInput = validateInput(minValue, maxValue);
+
+    if (isValidInput) {
+      const uniqueNumbers = prepareArray(minValue, maxValue);
+      const shuffledNumbers = shuffleArray(uniqueNumbers);
+      setShuffledNumbers(shuffledNumbers);
+    }
+  };
+
+  const prepareArray = (min, max) => {
+    const uniqueNumbers = [];
+    for (let i = min; i <= max; i++) {
+      uniqueNumbers.push(i);
+    }
+    return uniqueNumbers;
+  };
+
+  const shuffleArray = (array) => {
+    // Fisher-Yates shuffle algorithm
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
   return (
     <div>
       <h1>Shuffler</h1>
@@ -28,7 +56,8 @@ function App() {
         maxValue={maxValue}
         onInputChange={handleInputChange}
       />
-      <ResultDisplay />
+      <button onClick={handleShuffle}>Shuffle</button>
+      <ResultDisplay shuffledNumbers={shuffledNumbers} />
     </div>
   );
 }
