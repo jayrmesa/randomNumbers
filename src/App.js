@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div>
-      <h1>Shuffler</h1>
+      <h1>Random Number Shuffler</h1>
       <InputValue
         minValue={minValue}
         maxValue={maxValue}
@@ -98,3 +98,4 @@ function App() {
 
 export default App;
 
+//
