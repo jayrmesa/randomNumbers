@@ -13,11 +13,26 @@ function App() {
   };
 
   const handleInputValueChange = (name, value) => {
+    // Use regular expressions to ensure the input is a valid integer
+    const isValidInput = /^\d+$/.test(value);
 
+    if (isValidInput) {
+      if (name === 'minValue') {
+        setMinValue(parseInt(value, 10));
+      } else if (name === 'maxValue') {
+        setMaxValue(parseInt(value, 10));
+      }
+    } else if (value === '') {
+      // Handle the case where the input field is empty (no value)
+      clearInputValue(name);
+    }
+  };
+
+  const clearInputValue = (name) => {
     if (name === 'minValue') {
-      setMinValue(parseInt(value, 10));
+      setMinValue('');
     } else if (name === 'maxValue') {
-      setMaxValue(parseInt(value, 10));
+      setMaxValue('');
     }
   };
 
@@ -28,6 +43,25 @@ function App() {
       const uniqueNumbers = prepareArray(minValue, maxValue);
       const shuffledNumbers = shuffleArray(uniqueNumbers);
       setShuffledNumbers(shuffledNumbers);
+    }
+  };
+
+  const validateInput = (min, max) => {
+    if (min >= 1 && max <= 10000 && min <= max) {
+      return true;
+    } else {
+      handleInvalidInput();
+      return false;
+    }
+  };
+
+  const handleInvalidInput = () => {
+    if (minValue < 1 || maxValue > 10000) {
+      alert('Please enter values within the range [1, 10,000].');
+    } else if (minValue > maxValue) {
+      alert('The minimum value must be less than or equal to the maximum value.');
+    } else {
+      alert('Invalid input. Please enter valid values.');
     }
   };
 
