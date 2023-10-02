@@ -62,6 +62,23 @@ function App() {
     }
   };
 
+  function saveResults(results) {
+    // make the results array to a string
+    const resultsText = results.join('\n');
+
+    // create a Blob object with the text data
+    const blob = new Blob([resultsText], { type: 'text/plain' });
+
+    // create a download link
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'shuffled_numbers.txt'; // save it as
+
+    // click event to download the file
+    link.click();
+  }
+
+
   return (
     <div>
       <div className="navbar">Shuffler</div>
@@ -73,17 +90,18 @@ function App() {
         <p>Max = 10,000</p>
       </div>
 
-      <div className="app-container">  
-      <h2>Enter Range</h2>
-      <InputValue
-        min={min}
-        max={max}
-        onInput={handleInput}
-      />
-      <button 
-      onClick={handleShuffle}>Shuffle</button>
-      {errorMsg && <div className="error">{errorMsg}</div>}
-      {showResults && <ResultDisplay shuffledNumbers={shuffleNum} />}
+      <div className="app-container">
+        <h2>Enter Range</h2>
+        <InputValue
+          min={min}
+          max={max}
+          onInput={handleInput}
+        />
+        <button
+          onClick={handleShuffle}>Shuffle</button>
+        {errorMsg && <div className="error">{errorMsg}</div>}
+        {showResults && <ResultDisplay shuffledNumbers={shuffleNum} />}
+        {showResults && <button onClick={() => saveResults(shuffleNum)}>Download</button>}
       </div>
     </div>
   );
