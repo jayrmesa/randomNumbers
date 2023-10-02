@@ -48,6 +48,7 @@ function App() {
 
     if (errorMessage) {
       setErrorMsg(errorMessage);
+      setShowResults(false);
     } else {
       const uniqueNumbers = arrayNum(min, max);
       const shuffledNumbers = shuffleArr(uniqueNumbers);
