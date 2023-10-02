@@ -3,12 +3,14 @@ import InputValue from './components/InputValue';
 import ResultDisplay from './components/ResultDisplay';
 import { validateInput } from './helpers/validation';
 import { arrayNum, shuffleArr } from './helpers/shuffling';
+import './App.css';
 
 function App() {
   const [shuffleNum, setShuffleNum] = useState([]);
   const [min, setMin] = useState(null);
   const [max, setMax] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [showResults, setShowResults] = useState(false);
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -16,7 +18,7 @@ function App() {
   };
 
   const handleValue = (name, value) => {
-    // Use regular expressions to ensure the input is a valid integer
+    // regular expressions for a valid integer
     const isValid = /^\d+$/.test(value);
 
     if (isValid) {
@@ -25,7 +27,7 @@ function App() {
       } else if (name === 'max') {
         setMax(parseInt(value, 10));
       }
-      // Clear error message when input is valid
+      // Clear error message when field is valid
       setErrorMsg('');
     } else if (value === '') {
       // Handle the case where the text field is empty 
@@ -50,26 +52,39 @@ function App() {
     const errorMessage = validateInput(min, max);
 
     if (errorMessage) {
-      // Set the error message from the validation result
+      // Set the error message from the validation
       setErrorMsg(errorMessage);
     } else {
       const uniqueNumbers = arrayNum(min, max);
       const shuffledNumbers = shuffleArr(uniqueNumbers);
       setShuffleNum(shuffledNumbers);
+      setShowResults(true);
     }
   };
 
   return (
     <div>
-      <h1>Shuffler</h1>
+      <div className="navbar">Shuffler</div>
+      <div className="sidebar">
+        <h2>About</h2>
+        <p>An app that generates a list of 10,000 numbers in random order each time it is run.</p>
+        <h3>Default range</h3>
+        <p>Min = 1</p>
+        <p>Max = 10,000</p>
+      </div>
+
+      <div className="app-container">  
+      <h2>Enter Range</h2>
       <InputValue
         min={min}
         max={max}
         onInput={handleInput}
       />
-      <button onClick={handleShuffle}>Shuffle</button>
+      <button 
+      onClick={handleShuffle}>Shuffle</button>
       {errorMsg && <div className="error">{errorMsg}</div>}
-      <ResultDisplay shuffledNumbers={shuffleNum} />
+      {showResults && <ResultDisplay shuffledNumbers={shuffleNum} />}
+      </div>
     </div>
   );
 }
