@@ -25,7 +25,7 @@
   color: #00ADB5;
   font-size: 17px;
   margin: 5% auto;
-  padding: 1%;
+  padding: 2% 2%;
   font-weight: 550;
   transition-duration: 0.4s;
   border: 2px solid #00ADB5;
@@ -69,6 +69,7 @@
   color: red;
   margin-top: 10px;
   text-align: center;
+  font-size: 18px;
 }
 
 body {
@@ -113,3 +114,13 @@ body {
 .result-box li::after {
   content: "]";
 }
+
+.result-box button {
+  background-color: #00ADB5;
+  color: #EEEEEE;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
