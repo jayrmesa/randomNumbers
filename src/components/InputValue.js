@@ -1,26 +1,27 @@
 import React from 'react';
 
-function InputValue({ minValue, maxValue, onInputChange }) {
+function InputValue({ min, max, onInput }) {
   return (
     <div>
       <input
         type="text"
         placeholder="Enter min number..."
-        name="minValue"
-        value={minValue}
-        onChange={onInputChange}
+        name="min"
+        value={min === null ? '' : min}
+        onChange={onInput}
       />
       <input
         type="text"
         placeholder="Enter max number..."
-        name="maxValue"
-        value={maxValue}
-        onChange={onInputChange}
+        name="max"
+        value={max === null ? '' : max}
+        onChange={onInput}
       />
     </div>
   );
 }
 
 export default InputValue;
+
 
 
