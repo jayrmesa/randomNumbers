@@ -6,10 +6,10 @@ import { arrayNum, shuffleArr } from './helpers/shuffling';
 import './App.css';
 
 function App() {
-  const [shuffleNum, setShuffleNum] = useState([]);
   const [min, setMin] = useState(null);
   const [max, setMax] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [shuffledNumbers, setShuffledNumbers] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
   const handleInput = (event) => {
@@ -18,7 +18,6 @@ function App() {
   };
 
   const handleValue = (name, value) => {
-    // regular expressions for a valid integer
     const isValid = /^\d+$/.test(value);
 
     if (isValid) {
@@ -27,15 +26,11 @@ function App() {
       } else if (name === 'max') {
         setMax(parseInt(value, 10));
       }
-      // Clear error message when field is valid
       setErrorMsg('');
     } else if (value === '') {
-      // Handle the case where the text field is empty 
       clearInput(name);
-      // Set an error message for blank field
       setErrorMsg('Please enter a number');
     } else {
-      // Set the error message from the validation result
       setErrorMsg(validateInput(min, max));
     }
   };
@@ -52,32 +47,23 @@ function App() {
     const errorMessage = validateInput(min, max);
 
     if (errorMessage) {
-      // Set the error message from the validation
       setErrorMsg(errorMessage);
     } else {
       const uniqueNumbers = arrayNum(min, max);
       const shuffledNumbers = shuffleArr(uniqueNumbers);
-      setShuffleNum(shuffledNumbers);
+      setShuffledNumbers(shuffledNumbers);
       setShowResults(true);
     }
   };
 
-  function saveResults(results) {
-    // make the results array to a string
-    const resultsText = results.join('\n');
-
-    // create a Blob object with the text data
+  const saveResults = () => {
+    const resultsText = shuffledNumbers.join('\n');
     const blob = new Blob([resultsText], { type: 'text/plain' });
-
-    // create a download link
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'shuffled_numbers.txt'; // save it as
-
-    // click event to download the file
+    link.download = 'shuffled_numbers.txt';
     link.click();
-  }
-
+  };
 
   return (
     <div>
@@ -97,15 +83,13 @@ function App() {
           max={max}
           onInput={handleInput}
         />
-        <button
-          onClick={handleShuffle}>Shuffle</button>
+        <button onClick={handleShuffle}>Shuffle</button>
         {errorMsg && <div className="error">{errorMsg}</div>}
-        {showResults && <ResultDisplay shuffledNumbers={shuffleNum} />}
-        {showResults && <button onClick={() => saveResults(shuffleNum)}>Download</button>}
+        {showResults && <ResultDisplay shuffledNumbers={shuffledNumbers} />}
+        {showResults && <button onClick={saveResults}>Download</button>}
       </div>
     </div>
   );
 }
 
 export default App;
-
