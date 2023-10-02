@@ -1,38 +1,112 @@
-.App {
+.navbar {
+  background-color: #222831;
+  color: #EEEEEE;
+  padding: 10px;
   text-align: center;
+  height: 100px;
+  width: 100%;
+  font-size: 4rem;
+  font-family: 'Roboto Mono', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: -340px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-container h2 {
+  color: #00ADB5;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.app-container button {
+  background-color: #393E46;
+  color: #00ADB5;
+  font-size: 17px;
+  margin: 5% auto;
+  padding: 1%;
+  font-weight: 550;
+  transition-duration: 0.4s;
+  border: 2px solid #00ADB5;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.app-container button:hover {
+  background-color: #00ADB5; 
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app-container input {
+  color: #393E46;
+  font-size: 14px;
+  border: 2px solid #00ADB5;
+  padding: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-container input:first-child {
+  margin-right: 32px; 
+}
+
+.sidebar {
+  padding: 40px;
+  width: 350px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.sidebar h2 {
+  color: #00ADB5;
+}
+
+.sidebar h3 {
+  color: #00ADB5;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: #393E46;
+  color: #EEEEEE;
+}
+
+.result-box {
+  border: 1px solid #00ADB5;
+  padding: 10px;
+  margin-top: 20px;
+  max-width: 400px;
+  height: 400px; 
+  margin: 0 auto;
+  overflow-y: auto; 
+  overflow-x: auto;
+  overflow-wrap: break-word;
+  line-height: 2;
+}
+
+.result-box ul {
+  padding: 0;
+  white-space: pre-line; 
+}
+
+.result-box li {
+  display: inline;
+  margin-right: 8px;
+  padding: 0;
+}
+
+
+.result-box li::before,
+.result-box li::after {
+  content: "[";
+  color: #00ADB5; 
+  font-weight: bold; 
+}
+
+.result-box li::after {
+  content: "]";
 }
