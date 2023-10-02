@@ -13,7 +13,7 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  margin-top: -340px;
+  margin-top: -360px;
 }
 
 .app-container h2 {
@@ -52,6 +52,7 @@
 .sidebar {
   padding: 40px;
   width: 350px;
+  font-size: 18px;
   display: inline-block;
   vertical-align: top;
 }
