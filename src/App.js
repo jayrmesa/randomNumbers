@@ -1,101 +1,78 @@
 import React, { useState } from 'react';
 import InputValue from './components/InputValue';
 import ResultDisplay from './components/ResultDisplay';
+import { validateInput } from './helpers/validation';
+import { arrayNum, shuffleArr } from './helpers/shuffling';
 
 function App() {
-  const [shuffledNumbers, setShuffledNumbers] = useState([]);
-  const [minValue, setMinValue] = useState(1);
-  const [maxValue, setMaxValue] = useState(10000);
+  const [shuffleNum, setShuffleNum] = useState([]);
+  const [min, setMin] = useState(null);
+  const [max, setMax] = useState(null);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleInputChange = (event) => {
+  const handleInput = (event) => {
     const { name, value } = event.target;
-    handleInputValueChange(name, value);
+    handleValue(name, value);
   };
 
-  const handleInputValueChange = (name, value) => {
+  const handleValue = (name, value) => {
     // Use regular expressions to ensure the input is a valid integer
-    const isValidInput = /^\d+$/.test(value);
+    const isValid = /^\d+$/.test(value);
 
-    if (isValidInput) {
-      if (name === 'minValue') {
-        setMinValue(parseInt(value, 10));
-      } else if (name === 'maxValue') {
-        setMaxValue(parseInt(value, 10));
+    if (isValid) {
+      if (name === 'min') {
+        setMin(parseInt(value, 10));
+      } else if (name === 'max') {
+        setMax(parseInt(value, 10));
       }
+      // Clear error message when input is valid
+      setErrorMsg('');
     } else if (value === '') {
-      // Handle the case where the input field is empty (no value)
-      clearInputValue(name);
+      // Handle the case where the text field is empty 
+      clearInput(name);
+      // Set an error message for blank field
+      setErrorMsg('Please enter a number');
+    } else {
+      // Set the error message from the validation result
+      setErrorMsg(validateInput(min, max));
     }
   };
 
-  const clearInputValue = (name) => {
-    if (name === 'minValue') {
-      setMinValue('');
-    } else if (name === 'maxValue') {
-      setMaxValue('');
+  const clearInput = (name) => {
+    if (name === 'min') {
+      setMin('');
+    } else if (name === 'max') {
+      setMax('');
     }
   };
 
   const handleShuffle = () => {
-    const isValidInput = validateInput(minValue, maxValue);
+    const errorMessage = validateInput(min, max);
 
-    if (isValidInput) {
-      const uniqueNumbers = prepareArray(minValue, maxValue);
-      const shuffledNumbers = shuffleArray(uniqueNumbers);
-      setShuffledNumbers(shuffledNumbers);
-    }
-  };
-
-  const validateInput = (min, max) => {
-    if (min >= 1 && max <= 10000 && min <= max) {
-      return true;
+    if (errorMessage) {
+      // Set the error message from the validation result
+      setErrorMsg(errorMessage);
     } else {
-      handleInvalidInput();
-      return false;
+      const uniqueNumbers = arrayNum(min, max);
+      const shuffledNumbers = shuffleArr(uniqueNumbers);
+      setShuffleNum(shuffledNumbers);
     }
-  };
-
-  const handleInvalidInput = () => {
-    if (minValue < 1 || maxValue > 10000) {
-      alert('Please enter values within the range [1, 10,000].');
-    } else if (minValue > maxValue) {
-      alert('The minimum value must be less than or equal to the maximum value.');
-    } else {
-      alert('Invalid input. Please enter valid values.');
-    }
-  };
-
-  const prepareArray = (min, max) => {
-    const uniqueNumbers = [];
-    for (let i = min; i <= max; i++) {
-      uniqueNumbers.push(i);
-    }
-    return uniqueNumbers;
-  };
-
-  const shuffleArray = (array) => {
-    // Fisher-Yates shuffle algorithm
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
   };
 
   return (
     <div>
-      <h1>Random Number Shuffler</h1>
+      <h1>Shuffler</h1>
       <InputValue
-        minValue={minValue}
-        maxValue={maxValue}
-        onInputChange={handleInputChange}
+        min={min}
+        max={max}
+        onInput={handleInput}
       />
       <button onClick={handleShuffle}>Shuffle</button>
-      <ResultDisplay shuffledNumbers={shuffledNumbers} />
+      {errorMsg && <div className="error">{errorMsg}</div>}
+      <ResultDisplay shuffledNumbers={shuffleNum} />
     </div>
   );
 }
 
 export default App;
 
-//
