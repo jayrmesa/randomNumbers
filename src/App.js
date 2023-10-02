@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import InputValue from './components/InputValue';
 import ResultDisplay from './components/ResultDisplay';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import DownloadButton from './components/DownloadButton';
+
 import { validateInput } from './helpers/validation';
 import { arrayNum, shuffleArr } from './helpers/shuffling';
 import './App.css';
@@ -68,15 +72,8 @@ function App() {
 
   return (
     <div>
-      <div className="navbar">Shuffler</div>
-      <div className="sidebar">
-        <h2>About</h2>
-        <p>An app that generates a list of 10,000 numbers in random order each time it is run.</p>
-        <h3>Default range</h3>
-        <p>Min = 1</p>
-        <p>Max = 10,000</p>
-      </div>
-
+      <Navbar />
+      <Sidebar />
       <div className="app-container">
         <h2>Enter Range</h2>
         <InputValue
@@ -86,8 +83,8 @@ function App() {
         />
         <button onClick={handleShuffle}>Shuffle</button>
         {errorMsg && <div className="error">{errorMsg}</div>}
-        {showResults && <ResultDisplay shuffledNumbers={shuffledNumbers} />}
-        {showResults && <button onClick={saveResults}>Download</button>}
+        {showResults && !errorMsg && <ResultDisplay shuffledNumbers={shuffledNumbers} />}
+        {showResults && !errorMsg && <DownloadButton onClick={() => saveResults(shuffledNumbers)} />}
       </div>
     </div>
   );
