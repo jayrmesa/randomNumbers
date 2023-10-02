@@ -2,8 +2,8 @@ import React from 'react';
 
 function ResultDisplay({ shuffledNumbers }) {
   return (
-    <div>
-      <h2>Results:</h2>
+    <div className="result-box">
+      <h3>Results</h3>
       <ul>
         {shuffledNumbers.map((number, index) => (
           <li key={index}>{number}</li>
