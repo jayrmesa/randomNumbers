@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Shuffler
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**_BEWARE:_ This client was published for learning purposes. It is _not_ intended for use in production-grade software.**
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+ An app that generates a list of 10,000 numbers in random order each time it is run. Each number in the list is unique and be between 1 and 10,000
 
-### `npm start`
+### Application Functionality
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+!["demo1"](public/docs/demo1.gif)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+User is able to enter min number and a max number and shuffle the numbers in random order upon clicking the button
 
-### `npm test`
+### Extra Functionality
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+!["demo2"](public/docs/demo2.gif)
 
-### `npm run build`
+User is able download the result of shuffled numbers and saved in text file named as _`shuffled_numbers.txt`_.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Error Handles
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+!["demo3"](public/docs/demo3.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For the application to run, you will need to have NPM installed. If you do not know what NPM is, please visit this [website](https://docs.npmjs.com/about-npm).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+_Prior to installation make sure you go into the directory where you would like scheduler to reside._
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Clone** repository onto your local machine. 
+```sh
+1. git clone git@github.com:jayrmesa/randomNumbers.git
+```
 
-## Learn More
+**Run** the following command in the root directory to install all dependancies.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+npm i
+```
+## Running Webpack Development Server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Run** the following command in the root directory
+```sh
+ npm start
+```
 
-### Code Splitting
+1. Runs the app in the development mode.\
+2. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. Or will automatically open in your default browers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Running Jest Test Framework
 
-### Making a Progressive Web App
+```sh
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Dependencies
 
-### Advanced Configuration
+- Made using **REACT** 
+- jest-dom: "^5.17.0",
+- react: "^13.4.0",
+- web-vitals: "^2.1.4"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Authored By
+#### Arnold Mesa JayR 
