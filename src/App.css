@@ -1,3 +1,11 @@
+/* Global styles */
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: #393E46;
+  color: #EEEEEE;
+}
+
+/* Navbar */
 .navbar {
   background-color: #222831;
   color: #EEEEEE;
@@ -9,6 +17,7 @@
   font-family: 'Roboto Mono', monospace;
 }
 
+/* Main container */
 .app-container {
   max-width: 400px;
   margin: 0 auto;
@@ -20,6 +29,7 @@
   color: #00ADB5;
 }
 
+/* Buttons */
 .app-container button {
   background-color: #393E46;
   color: #00ADB5;
@@ -37,6 +47,7 @@
   color: white;
 }
 
+/* Input fields */
 .app-container input {
   color: #393E46;
   font-size: 18px;
@@ -49,6 +60,7 @@
   margin-right: 20px; 
 }
 
+/* Sidebar */
 .sidebar {
   padding: 40px;
   width: 350px;
@@ -57,14 +69,11 @@
   vertical-align: top;
 }
 
-.sidebar h2 {
+.sidebar h2, .sidebar h3 {
   color: #00ADB5;
 }
 
-.sidebar h3 {
-  color: #00ADB5;
-}
-
+/* Error messages */
 .error {
   color: red;
   text-align: center;
@@ -72,12 +81,7 @@
   padding: 20px;
 }
 
-body {
-  font-family: 'Roboto Mono', monospace;
-  background-color: #393E46;
-  color: #EEEEEE;
-}
-
+/* Result box */
 .result-box {
   border: 1px solid #00ADB5;
   padding: 10px;
@@ -103,7 +107,6 @@ body {
   padding: 0;
 }
 
-
 .result-box li::before,
 .result-box li::after {
   content: "[";
@@ -123,4 +126,3 @@ body {
   cursor: pointer;
   margin-top: 10px;
 }
-
