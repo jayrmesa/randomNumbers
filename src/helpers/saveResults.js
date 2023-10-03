@@ -6,5 +6,3 @@ export function saveResults(shuffledNumbers) {
   link.download = 'shuffled_numbers.txt';
   link.click();
 }
-
-
