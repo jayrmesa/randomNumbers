@@ -4,19 +4,20 @@
 
 ## About
 
- An app that generates a list of 10,000 numbers in random order each time it is run. Each number in the list is unique and be between 1 and 10,000
+ An app that generates a list of 10,000 numbers in random order each time it is run. Each number in the list is unique and be between 1 and 10,000. 
 
 ### Application Functionality
 
 !["demo1"](public/docs/demo1.gif)
 
-User is able to enter min number and a max number and shuffle the numbers in random order upon clicking the button
+- User is able to enter min number and a max number and shuffle the numbers in random order upon clicking the button. 
+- The App use [Fisher-Yates Shuffle](https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/) algorithm to ensure that each element has an equal chance of ending up in any position within the shuffled array, producing a truly random permutation.
 
 ### Extra Functionality
 
 !["demo2"](public/docs/demo2.gif)
 
-User is able download the result of shuffled numbers and saved in text file named as _`shuffled_numbers.txt`_.  
+- User is able download the result of shuffled numbers and saved in text file named as _`shuffled_numbers.txt`_.  
 
 ### Error Handles
 
